@@ -1,11 +1,14 @@
 // code to set the enviroment variables
 require("dotenv").config();
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
 
 // code that imports the keys file followed by the variables for spotify and twitter
 var keys = require("./keys.js");
 
 // creating variable to capture the command input
 var command = process.argv[2];
+var input = process.argv[3];
 
 // setting up switch cases for each command
 switch (command) {
@@ -32,6 +35,10 @@ switch (command) {
 // Commands needed:
 
 // *node liri.js my-tweets* this command shows your last 20 tweets and when they were created in the terminal window
+
+
+
+
 function twitter() {
     var twitter = require('twitter');
     
@@ -39,17 +46,24 @@ function twitter() {
     console.log("Current user is: ", identify );
 
     var set ={
-        screen_name: "devDummi"
+        screen_name: "node.js"
     };
 
-identify.get("statuses/user_timeline", set, function(error, tweets, response){
+identify.get("statuses/user_timeline/count 20", set, function(error, tweets, response){
     if (!error) {
         console.log("Here are your recent tweets: ", tweets);
     }
 });
 
 }
-
+// function twitter(){
+//     var tKey = require("./node_modules");
+//     var client = new twitter(keys.twitterKeys);
+//     client.get ("search/tweets",{q: "devDummi"},function(err,data,response){
+//         console.log(data);
+    
+//     });
+// };
 
 // *node liri.js spotify-this-song "<song name here>"* this command logs the following info to bash: 
     // Artist(s)

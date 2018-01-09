@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/meanderthal00/liri-node-app#readme",
   "dependencies": {
-    "dotenv": "^4.0.0"
+    "dotenv": "^4.0.0",
+    "node-spotify-api": "^1.0.7",
+    "twitter": "^1.7.1"
   }
 }
