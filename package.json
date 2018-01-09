@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/meanderthal00/liri-node-app/issues"
   },
-  "homepage": "https://github.com/meanderthal00/liri-node-app#readme"
+  "homepage": "https://github.com/meanderthal00/liri-node-app#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0"
+  }
 }

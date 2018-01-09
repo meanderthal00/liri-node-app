@@ -2,12 +2,53 @@
 require("dotenv").config();
 
 // code that imports the keys file followed by the variables for spotify and twitter
+var keys = require("./keys.js");
+
+// creating variable to capture the command input
+var command = process.argv[2];
+
+// setting up switch cases for each command
+switch (command) {
+    case "my-tweets":
+        command = twitter();
+        break;
+    case "spotify-this-song":
+        command = spotify();
+        break;
+    case "movie-this":
+        command = movie();
+        break;
+    case "do-what-it-says":
+        command = yesBoss();
+        break;
+    default:
+    console.log("No command entered");
+    break;
+}
+
 
 
 
 // Commands needed:
 
 // *node liri.js my-tweets* this command shows your last 20 tweets and when they were created in the terminal window
+function twitter() {
+    var twitter = require('twitter');
+    
+    var identify = new twitter(keys.twitter);
+    console.log("Current user is: ", identify );
+
+    var set ={
+        screen_name: "devDummi"
+    };
+
+identify.get("statuses/user_timeline", set, function(error, tweets, response){
+    if (!error) {
+        console.log("Here are your recent tweets: ", tweets);
+    }
+});
+
+}
 
 
 // *node liri.js spotify-this-song "<song name here>"* this command logs the following info to bash: 
@@ -32,3 +73,9 @@ require("dotenv").config();
     // *node liri do-what-it-says*
         // using 'fs' Node package, liri will take the text inside of random.txt and use it to call a command
             // it should run the spotify command for "I Want it That Way" as follow the text in random.txt
+
+
+
+// *****add a readme.md to the repo describing the project
+
+// *****add to portfolio
