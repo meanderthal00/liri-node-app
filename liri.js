@@ -25,8 +25,8 @@ switch (command) {
         command = yesBoss();
         break;
     default:
-    console.log("No command entered");
-    break;
+        console.log("No command entered");
+        break;
 }
 
 
@@ -40,40 +40,52 @@ switch (command) {
 
 
 function twitter() {
-    var twitter = require('twitter');
-    
-    var identify = new twitter(keys.twitter);
-    console.log("Current user is: ", identify );
-
-    var set ={
-        screen_name: "node.js"
+    var twitter = require("twitter");
+    var client = new Twitter(keys.twitter);
+    var params = {
+        screen_name: "DummiDev",
+        count: 20
     };
+    client.get('statuses/user_timeline', params, function (error, tweets, response) {
+        if (!error) {
+            for (var i = 0; i < tweets.length; i++) {
+                //   why does the line below return text as undefined?
+                console.log("Tweets " + tweets[i].text);                
+                console.log("Timestamp:" + tweets[i].created_at);
+                console.log("-------------------");
+            }
+        }
+    });
 
-identify.get("statuses/user_timeline/count 20", set, function(error, tweets, response){
-    if (!error) {
-        console.log("Here are your recent tweets: ", tweets);
-    }
-});
 
-}
-// function twitter(){
-//     var tKey = require("./node_modules");
-//     var client = new twitter(keys.twitterKeys);
-//     client.get ("search/tweets",{q: "devDummi"},function(err,data,response){
-//         console.log(data);
-    
-//     });
-// };
+    // var client = new Twitter(keys.twitter);
+    // console.log("Current user is: ", identify);
 
-// *node liri.js spotify-this-song "<song name here>"* this command logs the following info to bash: 
+    // var set = {
+    //     screen_name: "node.js"
+    // };
+
+    // identify.get("statuses/user_timeline/count 20", set, function (error, tweets, response) {
+    //     if (!error) {
+    //         console.log("Here are your recent tweets: ", tweets);
+    //     }
+    // });
+
+
+
+    // *node liri.js spotify-this-song "<song name here>"* this command logs the following info to bash: 
     // Artist(s)
     // The song's name
     //  A preview link of the song from Spotify
     // The name of the album that the song is from
     // If no song is provided, then it defaults to "The Sign" by Ace of Base
+    // function spotify(){
+    //     var spotify = require("node-spotify-api");
 
 
-// *node liri.js movie-this "<movie name here>"* This command outputs the following data to bash:
+    // }
+
+    // *node liri.js movie-this "<movie name here>"* This command outputs the following data to bash:
     // Title of the movie
     // Year released
     // IMDB rating of the movie
@@ -85,11 +97,10 @@ identify.get("statuses/user_timeline/count 20", set, function(error, tweets, res
     // If no movie title is supplied, liri defaults to "Mr.Nobody"
 
     // *node liri do-what-it-says*
-        // using 'fs' Node package, liri will take the text inside of random.txt and use it to call a command
-            // it should run the spotify command for "I Want it That Way" as follow the text in random.txt
+    // using 'fs' Node package, liri will take the text inside of random.txt and use it to call a command
+    // it should run the spotify command for "I Want it That Way" as follow the text in random.txt
 
 
 
-// *****add a readme.md to the repo describing the project
-
-// *****add to portfolio
+    // *****add a readme.md to the repo describing the project
+}
